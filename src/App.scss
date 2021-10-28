@@ -1,0 +1,66 @@
+#drum-machine {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: lightcyan;
+    font-family: monospace;
+}
+
+#display {
+    display: flex;
+    min-height: 50%;
+    min-width: 40%;
+    border-radius: 10px;
+    border: 8px solid orange;
+}
+
+.pad-container {
+    background-color: wheat;
+    min-height: 100%;
+    min-width: 60%;
+    display: inline-block;
+    text-align: center;
+    padding-top: 25px;
+}
+
+/* DRUM PADS */
+
+.drum-pad {
+    margin: 5px;
+    min-width: 28%;
+    min-height: 29%;
+}
+
+.keyTrigger {
+    font-size: 2.2rem;
+    font-weight: 500;
+    padding-top: 30px;
+}
+
+.control-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: plum;
+    min-height: 100%;
+    min-width: 40%;
+    .title {
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
+    .volume {
+        text-align: center;
+        width: 100%;
+        input {
+            width: 70%;
+        }
+    }
+    .description {
+        background-color: blue;
+        width: 65%;
+        height: 12%;
+        margin: 15px;
+    }
+}

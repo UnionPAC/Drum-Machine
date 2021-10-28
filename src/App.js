@@ -63,19 +63,19 @@ function App() {
 
 const [volume, setVolume] = useState(0.5)
 
+const [audioId, setAudioId] = useState('')
+
   return (
     <div id="drum-machine">
       <div id="display">
         <div className="pad-container">
           {audioClips.map(clip => (
-            <Pad clip={clip} key={clip.id} />
+            <Pad clip={clip} key={clip.id} volume={volume} setAudioId={setAudioId} />
           ))}
         </div>
         <div className="control-container">
-          <div className="power">
-            <h4 className="title">Power</h4>
-          </div>
           <div className="description">
+            {audioId}
           </div>
           <div className="volume">
             <h4 className="title">Volume</h4>
@@ -89,13 +89,16 @@ const [volume, setVolume] = useState(0.5)
              >
              </input>
           </div>
+          <div id="logo-container">
+            <img id="logo" className="pt-4 mt-4"  src="https://www.pngkey.com/png/full/303-3036579_free-code-camp-logo-transparent.png" width="80px"></img>
+          </div>
         </div>
       </div>
     </div>
   );
   }
 
-  function Pad({clip}) {
+  function Pad({clip, volume, setAudioId}) {
 
   const [active, setActive] = useState(false)
 
@@ -112,18 +115,23 @@ const [volume, setVolume] = useState(0.5)
     }
   }
 
-
   const playSound = () => {
     const audioTag = document.getElementById(clip.keyTrigger)
     setActive(true);
     setTimeout(() => setActive(false), 200)
-    
+    audioTag.volume = volume;
     audioTag.currentTime = 0;
     audioTag.play();
+    setAudioId(() => clip.id);
+    setTimeout(() => setAudioId(), 500)
   }
 
+
     return (
-      <div onClick={playSound} className={`btn btn-secondary drum-pad ${active && 'btn-warning'}`}>
+      <div onClick={() => {
+        playSound();
+
+      }} id={clip.id} className={`btn btn-secondary drum-pad ${active && 'btn-warning'}`}>
         <audio className="clip" id={clip.keyTrigger} src={clip.url} />
         <div class="keyTrigger">
           {clip.keyTrigger}
